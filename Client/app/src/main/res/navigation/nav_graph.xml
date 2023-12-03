@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/detailEditFragment"
+        android:name="com.example.client.DetailEditFragment"
+        android:label="fragment_detail_edit"
+        tools:layout="@layout/fragment_detail_edit" >
+        <action
+            android:id="@+id/action_detailEditFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editMainFragment"
+        android:name="com.example.client.EditMainFragment"
+        android:label="fragment_edit_main"
+        tools:layout="@layout/fragment_edit_main" >
+        <action
+            android:id="@+id/action_editMainFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.client.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_editMainFragment"
+            app:destination="@id/editMainFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_reviewFragment2"
+            app:destination="@id/reviewFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_projectsFragment"
+            app:destination="@id/projectsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_photosFragment"
+            app:destination="@id/photosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.example.client.ReviewFragment"
+        android:label="fragment_review"
+        tools:layout="@layout/fragment_review" >
+        <action
+            android:id="@+id/action_reviewFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.client.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_detailEditFragment"
+            app:destination="@id/detailEditFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="com.example.client.PhotosFragment"
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos" >
+        <action
+            android:id="@+id/action_photosFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectsFragment"
+        android:name="com.example.client.ProjectsFragment"
+        android:label="fragment_projects"
+        tools:layout="@layout/fragment_projects" >
+        <action
+            android:id="@+id/action_projectsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+
+</navigation>

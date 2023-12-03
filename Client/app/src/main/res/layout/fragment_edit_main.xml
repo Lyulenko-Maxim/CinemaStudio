@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EditMainFragment">
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="26dp"
+        android:background="#00EC0606"
+        android:padding="2dp"
+        android:src="@drawable/back"
+        tools:src="@drawable/back" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Редактирование"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="normal" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="224dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Имя Фамилия"
+        app:boxBackgroundColor="#F6F6F6"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        android:maxWidth="50dp"
+        app:boxStrokeColor="#E8E8E8"
+        android:textColorHint="#BDBDBD"
+        app:hintTextColor="#BDBDBD">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:inputType="text"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Кантемир Балагов"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Профессия"
+        app:boxBackgroundColor="#F6F6F6"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        android:maxWidth="50dp"
+        app:boxStrokeColor="#E8E8E8"
+        android:textColorHint="#BDBDBD"
+        app:hintTextColor="#BDBDBD">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:inputType="text"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="376dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Жанры"
+        app:boxBackgroundColor="#F6F6F6"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        android:maxWidth="50dp"
+        app:boxStrokeColor="#E8E8E8"
+        android:textColorHint="#BDBDBD"
+        app:hintTextColor="#BDBDBD">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:inputType="text"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="452dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Дата рождения"
+        app:boxBackgroundColor="#F6F6F6"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        android:maxWidth="50dp"
+        app:boxStrokeColor="#E8E8E8"
+        android:textColorHint="#BDBDBD"
+        app:hintTextColor="#BDBDBD">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextText4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:inputType="date"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="528dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Номер телефона"
+        app:boxBackgroundColor="#F6F6F6"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        android:maxWidth="50dp"
+        app:boxStrokeColor="#E8E8E8"
+        android:textColorHint="#BDBDBD"
+        app:hintTextColor="#BDBDBD">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_medium"
+            android:inputType="phone"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:background="#00FFFFFF"
+        android:layout_gravity="end"
+        android:src="@drawable/check" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="73dp"
+        android:layout_height="99dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="68dp"
+        tools:src="@drawable/men" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="608dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Выйти"
+        android:layout_marginBottom="30dp"
+        android:textColor="#FF6600"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="168dp"
+
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:text="Изменить фото"
+        android:textColor="#5DB075"
+        android:textSize="16sp" />
+</FrameLayout>

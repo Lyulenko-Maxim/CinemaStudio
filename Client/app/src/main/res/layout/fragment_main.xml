@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainFragment">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="22dp"
+            app:cardCornerRadius="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/roundedImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ava" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="140dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="22dp"
+            android:textSize="26sp"
+            android:fontFamily="@font/inter_bold"
+            android:textStyle="bold"
+            android:text="Кантемир Балагов" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="92dp"
+            android:textColor="#666666"
+            android:fontFamily="@font/inter"
+            android:text="Актер" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="115dp"
+            android:textColor="#666666"
+            android:fontFamily="@font/inter"
+            android:text="28 июня 1990 год, 33 года" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="146dp"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="Жанры" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="169dp"
+            android:textColor="#666666"
+            android:fontFamily="@font/inter"
+            android:text="Драма" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="225dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="16sp"
+            android:text="Тел." />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="228dp"
+            android:textColor="#666666"
+            android:fontFamily="@font/inter"
+            android:text="+375 (29) 598-91-35" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="263dp"
+            app:cardBackgroundColor="#E8E8E8"
+            app:cardCornerRadius="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+
+                android:textSize="20sp"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black"
+                android:text="5.9" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="10dp"
+                android:text="Рейтинг" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="29dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginBottom="12dp"
+                android:text="524 Оценки" />
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:paddingLeft="34dp"
+            android:paddingRight="34dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginStart="175dp"
+            android:layout_marginTop="263dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="16sp"
+            app:backgroundTint="#5DB075"
+            android:text="Подробнее  ⟶" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="30dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/edit" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Проекты"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="344dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            tools:itemCount="2"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="377dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Фото"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="488dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            tools:itemCount="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="522dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Видеовизитка"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="672dp"
+            />
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_marginTop="715dp"
+           app:cardCornerRadius="10dp"
+           android:layout_marginStart="16dp"
+           android:layout_marginEnd="16dp"
+           android:layout_height="200dp">
+           <VideoView
+            android:id="@+id/videoview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+       </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Отзывы"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="938dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            tools:itemCount="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="972dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="330dp"
+
+            android:fontFamily="@font/inter_medium"
+            android:text="17  ⟶"
+            android:padding="0dp"
+
+            android:textColor="#5DB075"
+            android:textSize="14sp"
+            app:backgroundTint="@android:color/transparent" />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="480dp"
+
+            android:fontFamily="@font/inter_medium"
+            android:text="17  ⟶"
+            android:padding="0dp"
+
+            android:textColor="#5DB075"
+            android:textSize="14sp"
+            app:backgroundTint="@android:color/transparent" />
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="925dp"
+
+            android:fontFamily="@font/inter_medium"
+            android:text="17  ⟶"
+            android:padding="0dp"
+
+            android:textColor="#5DB075"
+            android:textSize="14sp"
+            app:backgroundTint="@android:color/transparent" />
+    </FrameLayout>
+
+</androidx.core.widget.NestedScrollView>
