@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 
 public class ProjectsFragment extends Fragment {
@@ -16,6 +19,10 @@ public class ProjectsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_projects, container, false);
+        RecyclerView rv = view.findViewById(R.id.RecView);
+        List<Project> projects = Project.getPro();
+        ProjectAdapter adapter = new ProjectAdapter(getActivity(),projects);
+        rv.setAdapter(adapter);
         ImageButton back = view.findViewById(R.id.imageButton3);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

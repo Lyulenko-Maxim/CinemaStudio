@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 public class MainFragment extends Fragment {
 
@@ -30,6 +33,11 @@ public class MainFragment extends Fragment {
         MediaController mediaController = new MediaController(getActivity());
         videoview.setMediaController(mediaController);
         mediaController.setAnchorView(videoview);
+
+        RecyclerView rv = view.findViewById(R.id.RecView);
+        List<Project> projects = Project.getPro().subList(0,2);
+        ProjectAdapter adapter = new ProjectAdapter(getActivity(),projects);
+        rv.setAdapter(adapter);
 
         ImageButton buttonEdit = view.findViewById(R.id.imageButton2);
         Button buttonMore = view.findViewById(R.id.button3);
