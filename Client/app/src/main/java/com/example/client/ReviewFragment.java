@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 
 public class ReviewFragment extends Fragment {
@@ -18,18 +21,11 @@ public class ReviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_review, container, false);
-        view.findViewById(R.id.RecView);
-        /*
-        List<Planet> planets = Planets.getPlanets();
+        RecyclerView rv = view.findViewById(R.id.RecView);
+        List<Review> reviews = Review.getReviews();
+        ReviewAdapter adapter = new ReviewAdapter(getActivity(),reviews);
+        rv.setAdapter(adapter);
 
-        PlanetAdapter2.OnPlanetClickListener planetClickListener = new PlanetAdapter2.OnPlanetClickListener() {
-            @Override
-            public void onPlanetClick(Planet planet, int position) {
-                model.select(position);
-            }
-        };
-        PlanetAdapter2 adapter = new PlanetAdapter2(getActivity(),planets,planetClickListener);
-        rv.setAdapter(adapter);*/
         ImageButton back = view.findViewById(R.id.imageButton3);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

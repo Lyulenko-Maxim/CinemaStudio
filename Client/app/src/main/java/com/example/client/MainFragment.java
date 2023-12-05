@@ -39,6 +39,16 @@ public class MainFragment extends Fragment {
         ProjectAdapter adapter = new ProjectAdapter(getActivity(),projects);
         rv.setAdapter(adapter);
 
+        RecyclerView reviewRec = view.findViewById(R.id.reviewRec);
+        List<Review> reviews = Review.getReviews().subList(0,1);
+        ReviewAdapter adapterReview = new ReviewAdapter(getActivity(),reviews);
+        reviewRec.setAdapter(adapterReview);
+
+        RecyclerView photoRec = view.findViewById(R.id.RecyclerPhoto);
+        List<Photo> photos = Photo.getPhotos().subList(0,3);
+        PhotoAdapter photoReview = new PhotoAdapter(getActivity(),photos);
+        photoRec.setAdapter(photoReview);
+
         ImageButton buttonEdit = view.findViewById(R.id.imageButton2);
         Button buttonMore = view.findViewById(R.id.button3);
         Button buttonProjects = view.findViewById(R.id.button4);
