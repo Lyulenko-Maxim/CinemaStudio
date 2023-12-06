@@ -35,6 +35,7 @@ dependencies {
     val recyclerViewVersion = "1.3.2"
 
     // Installed dependencies
+    implementation ("com.squareup.picasso:picasso:2.71828")
     implementation("androidx.navigation:navigation-fragment:$navVersion")
     implementation("androidx.navigation:navigation-ui:$navVersion")
     implementation("androidx.recyclerview:recyclerview:$recyclerViewVersion")

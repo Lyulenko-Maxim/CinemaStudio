@@ -173,11 +173,14 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecView"
             android:layout_width="match_parent"
             tools:itemCount="2"
+
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="377dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/textView23"
@@ -191,10 +194,12 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerPhoto"
             android:layout_width="match_parent"
-            tools:itemCount="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            tools:itemCount="3"
+            android:layout_marginHorizontal="1dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
             android:layout_marginTop="522dp"
             android:layout_height="wrap_content" />
         <TextView
@@ -231,12 +236,12 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reviewRec"
             android:layout_width="match_parent"
-            tools:itemCount="1"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="972dp"
-            android:layout_height="wrap_content" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="1" />
 
         <Button
             android:id="@+id/button4"
