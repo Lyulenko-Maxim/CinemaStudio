@@ -1,5 +1,6 @@
 package com.example.backend.entities;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,6 +12,7 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public abstract class BaseEntity {
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -11,7 +11,10 @@ public class HibernateUtil {
 
     static {
         try {
-            sessionFactory = new Configuration().configure().buildSessionFactory();
+            sessionFactory = new Configuration()
+                    .configure()
+                    .buildSessionFactory();
+
         } catch (Throwable e) {
             throw new ExceptionInInitializerError(e);
         }

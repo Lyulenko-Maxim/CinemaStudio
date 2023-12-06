@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO extends BaseDAO<User, Integer> {
     public UserDAO(SessionFactory sessionFactory) {
@@ -28,7 +28,7 @@ public class UserDAO extends BaseDAO<User, Integer> {
     }
 
     @Override
-    public ArrayList<User> list() throws HibernateException {
+    public List<User> list() throws HibernateException {
         return null;
     }
 

@@ -1,5 +1,6 @@
 package com.example.backend.entities;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,19 +13,25 @@ import java.util.Set;
 @Getter
 @Setter
 public class Vacancy extends BaseEntity {
+
+    @Expose
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Expose
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "vacancy")
-    private Set<Position> positions = new HashSet<>();
+    @Expose
+    @OneToMany(mappedBy = "vacancy", fetch = FetchType.EAGER)
+    private Set<Position> positions;
 
-    @ManyToOne
+    @Expose
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employer_id", nullable = false)
     private Employer employer;
 
+    @Expose
     @Lob
     @Column(name = "cover")
     private byte[] imageData;

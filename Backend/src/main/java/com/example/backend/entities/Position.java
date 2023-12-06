@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "positions")
 public class Position extends BaseEntity {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vacancy_id", nullable = false)
     private Vacancy vacancy;
 

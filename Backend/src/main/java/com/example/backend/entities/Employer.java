@@ -16,6 +16,6 @@ public class Employer extends BaseEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer", fetch = FetchType.LAZY)
     private Set<Vacancy> vacancies;
 }

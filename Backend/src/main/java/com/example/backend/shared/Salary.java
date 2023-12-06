@@ -17,13 +17,13 @@ import java.math.BigDecimal;
 public class Salary {
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
+    @Column(name = "salary_type", nullable = false)
     private SalaryType type;
 
-    @Column(name = "amount")
+    @Column(name = "salary_amount")
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "currency")
+    @Column(name = "salary_currency")
     private CurrencyType currency;
 }

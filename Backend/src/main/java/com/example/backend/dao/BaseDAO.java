@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BaseDAO<E, K> {
     protected final SessionFactory sessionFactory;
@@ -16,7 +16,7 @@ public abstract class BaseDAO<E, K> {
 
     public abstract boolean create(E entity) throws HibernateException;
 
-    public abstract ArrayList<E> list() throws HibernateException;
+    public abstract List<E> list() throws HibernateException;
 
     public abstract E retreive(K id) throws HibernateException;
 
