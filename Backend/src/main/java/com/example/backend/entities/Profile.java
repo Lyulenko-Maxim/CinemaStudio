@@ -1,5 +1,6 @@
 package com.example.backend.entities;
 
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,6 +48,11 @@ public class Profile  extends BaseEntity{
 
     @Column(name="birth_date")
     private Date birthdate;
+
+    @Expose
+    @Lob
+    @Column(name = "avatar")
+    private byte[] avatar;
 
     @Column(name = "birth_place")
     private String birthplace;
