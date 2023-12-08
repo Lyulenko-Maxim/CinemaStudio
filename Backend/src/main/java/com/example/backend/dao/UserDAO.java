@@ -1,18 +1,14 @@
 package com.example.backend.dao;
 
 import com.example.backend.entities.User;
+import jakarta.persistence.criteria.Predicate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserDAO extends BaseDAO<User, Integer> {
-    public UserDAO(SessionFactory sessionFactory) {
-        super(sessionFactory);
-    }
 
     @Override
     public boolean create(User user) throws HibernateException {

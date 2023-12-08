@@ -3,14 +3,16 @@ package com.example.backend.dao;
 import com.example.backend.entities.Vacancy;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class VacancyDAO extends BaseDAO<Vacancy, Integer> {
-    public VacancyDAO(SessionFactory sessionFactory) {
-        super(sessionFactory);
-    }
+
 
     @Override
     public boolean create(Vacancy vacancy) throws HibernateException {
@@ -30,13 +32,63 @@ public class VacancyDAO extends BaseDAO<Vacancy, Integer> {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Vacancy> criteria = builder.createQuery(Vacancy.class);
-            criteria.from(Vacancy.class);
             return session.createQuery(criteria).getResultList();
 
         } catch (HibernateException e) {
             return null;
         }
     }
+
+    public List<Vacancy> list(Map<String, String[]> filters) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Vacancy> criteria = builder.createQuery(Vacancy.class);
+            Root<Vacancy> root = criteria.from(Vacancy.class);
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (filters != null && !filters.isEmpty()) {
+                for (Map.Entry<String, String[]> entry : filters.entrySet()) {
+                    String field = entry.getKey();
+                    Object value = entry.getValue();
+
+                    if (value != null) {
+                        predicates.add(builder.equal(root.get(field), value));
+                    }
+                }
+            }
+
+            if (!predicates.isEmpty()) {
+                criteria.where(predicates.toArray(new Predicate[0]));
+            }
+
+            return session.createQuery(criteria).getResultList();
+
+        } catch (HibernateException e) {
+            return null;
+        }
+    }
+
+//    public List<Predicate> buildPredicates(
+//            CriteriaBuilder builder,
+//            Root<Vacancy> root,
+//            Map<String, String[]> filters
+//    ) {
+//        List<Predicate> predicates = new ArrayList<>();
+//
+//        if (filters != null && !filters.isEmpty()) {
+//            for (Map.Entry<String, String[]> entry : filters.entrySet()) {
+//                String field = entry.getKey();
+//                Object value = entry.getValue();
+//
+//                if (value != null) {
+//                    predicates.add(builder.equal(root.get(field), value));
+//                }
+//            }
+//        }
+//
+//        return predicates;
+//    }
 
     @Override
     public Vacancy retreive(Integer id) throws HibernateException {

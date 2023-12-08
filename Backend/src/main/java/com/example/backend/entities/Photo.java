@@ -18,6 +18,6 @@ public class Photo extends BaseEntity{
 
     @Expose
     @Lob
-    @Column(name = "image_url", nullable = false)
-    private byte[] imageURL;
+    @Column(name = "image", nullable = false)
+    private byte[] image;
 }
