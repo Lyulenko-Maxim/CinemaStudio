@@ -43,9 +43,13 @@ public class ProfileServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
 
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
+
+                ProfileDAO profileDAO = new ProfileDAO();
                 String numberString = pathInfo.replace("/", "");
-                long number = Integer.parseInt(numberString);
-                int user_id = Integer.parseInt(req.getParameter("user_id"));
+                int number = Integer.parseInt(numberString);
+                long numberLong =  Integer.parseInt(numberString);
+                Profile profile_old = profileDAO.retreive(number);
+
                 int profession_id = Integer.parseInt(req.getParameter("profession_id"));
                 int genre_id = Integer.parseInt(req.getParameter("genre_id"));
                 Date birthdate = Date.valueOf(req.getParameter("birth_date"));
@@ -55,16 +59,16 @@ public class ProfileServlet extends HttpServlet {
                 String education = req.getParameter("education");
                 String institution = req.getParameter("institution");
                 String description = req.getParameter("description");
-                ProfileDAO profileDAO = new ProfileDAO();
-                Profile profile = new Profile();
-                profile.setId(number);
-                profile.setBirthdate(birthdate);
-                profile.setBirthplace(birthplace);
-                profile.setExperience(experience);
-                profile.setEducation(education);
-                profile.setInstitution(institution);
-                profile.setDescription(description);
-                boolean profileUpdated = profileDAO.update(profile);
+
+                profile_old.setId(numberLong);
+                profile_old.setBirthdate(birthdate);
+                profile_old.setBirthplace(birthplace);
+                profile_old.setExperience(experience);
+                profile_old.setEducation(education);
+                profile_old.setInstitution(institution);
+                profile_old.setDescription(description);
+
+                boolean profileUpdated = profileDAO.update(profile_old);
                 if (profileUpdated) {
                     this.outputResponse(resp, "Профиль обновлен в БД.", 200);
                 } else {
