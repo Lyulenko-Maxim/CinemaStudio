@@ -12,7 +12,6 @@ import java.util.Set;
 @Table(name = "reviews")
 public class Review  extends BaseEntity{
 
-
     @Column(name = "review", nullable = false)
     private String review;
 
