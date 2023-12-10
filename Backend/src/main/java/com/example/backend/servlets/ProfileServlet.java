@@ -4,6 +4,7 @@ import com.example.backend.dao.ProfileDAO;
 import com.example.backend.entities.Profile;
 import com.example.backend.utils.HibernateUtil;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.hibernate.SessionFactory;
 
 import javax.servlet.annotation.WebServlet;
@@ -14,28 +15,28 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Date;
 
-@WebServlet("/profile/*")
+@WebServlet("/profiles/*")
 public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        String pathInfo = req.getServletPath();
-        if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
+            String pathInfo = req.getServletPath();
+            /*
             String numberString = pathInfo.replace("/", "");
-            int number = Integer.parseInt(numberString);
+            int number = Integer.parseInt(numberString);*/
             ProfileDAO profileDAO = new ProfileDAO();
-            String json = this.toJson(profileDAO.retreive(number));
+            Gson gson = new GsonBuilder()
+                        .excludeFieldsWithoutExposeAnnotation()
+                        .create();
+            String json = gson.toJson(profileDAO.list());
             if (json == null) {
                 this.outputResponse(resp, "Профиль не найден.", 404);
             }
             else {
                 this.outputResponse(resp,json,200);
             }
-        } else {
-            this.outputResponse(resp, "Запрос сформулирован неверно.", 500);
         }
-    }
 
 
     @Override

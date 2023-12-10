@@ -23,16 +23,22 @@ public class ProfileDAO extends BaseDAO<Profile, Integer>{
 
     @Override
     public List<Profile> list() throws HibernateException {
-       return null;
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from Profile").list();
+        }
     }
 
+    public List<Profile> list(Integer id) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            String st=  "FROM Profile WHERE id = 1";
+            return session.createQuery(st).list();
+        }
+    }
 
     @Override
     public Profile retreive(Integer id) throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
             Profile profile = session.get(Profile.class, id);
-            transaction.commit();
             return profile;
         } catch (HibernateException e) {
             return null;

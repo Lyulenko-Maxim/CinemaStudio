@@ -26,10 +26,16 @@ public class PhotoDAO extends BaseDAO<Photo, Integer> {
     @Override
     public List<Photo> list() throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from Photo", Photo.class).list();
+            return session.createQuery("from Photo").list();
         }
     }
 
+    public List list(Integer id) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            String st=  "FROM Photo WHERE id =" +id;
+            return session.createQuery(st).list();
+        }
+    }
 
     @Override
     public Photo retreive(Integer id) throws HibernateException {

@@ -12,7 +12,7 @@ import lombok.Setter;
 @Table(name = "photos")
 public class Photo extends BaseEntity{
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profile_id", nullable = false)
     private Profile profile;
 

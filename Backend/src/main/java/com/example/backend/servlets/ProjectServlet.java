@@ -15,17 +15,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Date;
 
-@WebServlet("/projects/")
+@WebServlet("/projects/*")
 public class ProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-
-        String pathInfo = req.getServletPath();
+            String pathInfo = req.getPathInfo();
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
             String numberString = pathInfo.replace("/", "");
             int number = Integer.parseInt(numberString);
             ProjectDAO projectDAO = new ProjectDAO();
-            String json = this.toJson(projectDAO.retreive(number));
+            String json = this.toJson(projectDAO.list(number));
             if (json == null) {
                 this.outputResponse(resp, "Проекты не найдены.", 404);
             }
@@ -36,6 +35,7 @@ public class ProjectServlet extends HttpServlet {
             this.outputResponse(resp, "Запрос сформулирован неверно.", 500);
         }
     }
+
 
 
     @Override
@@ -63,6 +63,7 @@ public class ProjectServlet extends HttpServlet {
             String numberString = pathInfo.replace("/","");
             int number = Integer.parseInt(numberString);
             ProjectDAO projectDAO = new ProjectDAO();
+            ProjectService projectService = new ProjectService(projectDAO);
             boolean isDeleted = projectDAO.delete(number);
             if (isDeleted) {
                 this.outputResponse(resp, "Проект удален", 200);
@@ -73,6 +74,7 @@ public class ProjectServlet extends HttpServlet {
             this.outputResponse(resp, "Запрос сформулирован неверно", 500);
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException{
 

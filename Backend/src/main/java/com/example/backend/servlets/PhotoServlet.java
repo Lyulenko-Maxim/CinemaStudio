@@ -5,6 +5,7 @@ import com.example.backend.dao.ProjectDAO;
 import com.example.backend.entities.Photo;
 import com.example.backend.entities.Project;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,26 +14,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@WebServlet("/photos/")
+@WebServlet("/photos/*")
 public class PhotoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        String pathInfo = req.getServletPath();
-        if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
+            String pathInfo = req.getPathInfo();
+            if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
             String numberString = pathInfo.replace("/", "");
             int number = Integer.parseInt(numberString);
             PhotoDAO photoDAO = new PhotoDAO();
-            String json = this.toJson(photoDAO.retreive(number));
+            Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+            String json = gson.toJson(photoDAO.retreive(number));
+            System.out.println(json);
             if (json == null) {
                 this.outputResponse(resp, "Фото не найдены.", 404);
             }
             else {
                 this.outputResponse(resp,json,200);
             }
-        } else {
-            this.outputResponse(resp, "Запрос сформулирован неверно.", 500);
-        }
+    }   else {
+                this.outputResponse(resp, "Запрос сформулирован неверно.", 500);
+            }
     }
 
 

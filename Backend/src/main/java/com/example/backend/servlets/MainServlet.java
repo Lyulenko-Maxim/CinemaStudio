@@ -26,6 +26,7 @@ public class MainServlet extends HttpServlet {
         try (Session session = sessionFactory.openSession()) {
 //            resp.getWriter().println("Hello world");
         }
+        /*
         VacancyDAO vacancyDAO = new VacancyDAO(sessionFactory);
         List<Vacancy> vacancies = vacancyDAO.list();
 
@@ -36,5 +37,7 @@ public class MainServlet extends HttpServlet {
         OutputStream out = resp.getOutputStream();
         out.write(jsonResult.getBytes());
         out.flush();
+
+         */
     }
 }

@@ -15,4 +15,7 @@ public class Project extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @ManyToMany(mappedBy = "projects")
+    private Set<Profile> profiles;
+
 }

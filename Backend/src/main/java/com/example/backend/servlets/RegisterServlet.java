@@ -18,7 +18,7 @@ public class RegisterServlet extends HttpServlet {
     private final UserService userService;
 
     public RegisterServlet() {
-        UserDAO userDao = new UserDAO(HibernateUtil.getSessionFactory());
+        UserDAO userDao = new UserDAO();
         userService = new UserService(userDao);
     }
 
