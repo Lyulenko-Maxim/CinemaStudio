@@ -24,6 +24,17 @@ public class ProjectDAO extends BaseDAO<Project,Integer>{
         }
     }
 
+    public boolean create(Integer prof_id, Long proj_id) {
+        try (Session session = sessionFactory.openSession()) {
+            String q =  "INSERT INTO profile_projects(profile_id, project_id) VALUES(" + prof_id + "," + proj_id + ")";
+            session.createNativeQuery(q);
+            return true;
+        } catch (HibernateException e) {
+            return false;
+        }
+    }
+
+
     @Override
     public List<Project> list() throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
@@ -32,10 +43,13 @@ public class ProjectDAO extends BaseDAO<Project,Integer>{
     }
 
 
-    public List list(Integer id) throws HibernateException {
+    public Set<Project> list(Integer id) throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
-          String st=  "SELECT t.name FROM Profile r JOIN r.projects t WHERE r.id =" +id;
-          return session.createQuery(st).list();
+          /*String st=  "SELECT t.name FROM Profile r JOIN r.projects t WHERE r.id =" +id;
+          return session.createQuery(st).list();*/
+            ProfileDAO profileDAO = new ProfileDAO();
+            Profile pr = profileDAO.retreive(id);
+            return pr.getProjects();
         }
     }
 
@@ -63,8 +77,27 @@ public class ProjectDAO extends BaseDAO<Project,Integer>{
             Transaction transaction = session.beginTransaction();
 
             Profile user = session.get(Profile.class, id);
+            String q =  "DELETE FROM profile_projects WHERE profile_id =" +id + " AND project_id=";
+            session.createNativeQuery(q);
+            /*
+            user.getGenres().clear();
+            user.getGenres().addAll(newGenres);
+            session.saveOrUpdate(user);*/
+            transaction.commit();
+            return true;
+        } catch (HibernateException e) {
+            return false;
+        }
+    }
 
-/*
+    public boolean delete(Integer id, Integer id2) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Profile user = session.get(Profile.class, id);
+            String q =  "DELETE FROM profile_projects WHERE profile_id=" +id + " AND project_id=" + id2;
+            session.createNativeQuery(q);
+            /*
             user.getGenres().clear();
             user.getGenres().addAll(newGenres);
             session.saveOrUpdate(user);*/

@@ -2,6 +2,7 @@ package com.example.backend.servlets;
 
 import com.example.backend.dao.ProfileDAO;
 import com.example.backend.dao.ProjectDAO;
+import com.example.backend.entities.Profession;
 import com.example.backend.entities.Profile;
 import com.example.backend.entities.Project;
 import com.example.backend.services.ProjectService;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @WebServlet("/projects/*")
 public class ProjectServlet extends HttpServlet {
@@ -41,10 +45,9 @@ public class ProjectServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws  IOException{
         String pathInfo = req.getPathInfo();
-
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
 
-            boolean profileUpdated = false;
+            boolean profileUpdated=false;
             if (profileUpdated) {
                 this.outputResponse(resp, "Профиль обновлен в БД.", 200);
             } else {
@@ -61,10 +64,11 @@ public class ProjectServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
             String numberString = pathInfo.replace("/","");
+            int id = Integer.parseInt(req.getParameter("id"));
             int number = Integer.parseInt(numberString);
             ProjectDAO projectDAO = new ProjectDAO();
             ProjectService projectService = new ProjectService(projectDAO);
-            boolean isDeleted = projectDAO.delete(number);
+            boolean isDeleted = projectDAO.delete(number,id);
             if (isDeleted) {
                 this.outputResponse(resp, "Проект удален", 200);
             } else {
@@ -77,12 +81,28 @@ public class ProjectServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException{
-
         String pathInfo = req.getPathInfo();
-        if (pathInfo == null || pathInfo.equals("/")) {
-
+        if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
+            String numberString = pathInfo.replace("/","");
+            int id = Integer.parseInt(numberString);
+            String name = req.getParameter("name");
+            Project project = new Project();
+            project.setName(name);
             ProjectDAO projectDAO = new ProjectDAO();
-            boolean isCreated = projectDAO.create(new Project());
+            ProfileDAO profileDAO = new ProfileDAO();
+            List<Project> allProjects = projectDAO.list();
+            Profile profile = profileDAO.retreive(id);
+            Set<Project> userProject = profile.getProjects();
+            long id_of_project=0;
+            int id_pr=0;
+            for (int i=0; i < allProjects.size(); i++) {
+                if (Objects.equals(allProjects.get(i).getName(), name)) {
+                        userProject.add(allProjects.get(i));
+                        this.outputResponse(resp, "Проект внесен в profile_projects. ПУПУ", 200);
+                        return;
+                }
+            }
+            boolean isCreated = projectDAO.create(project);
             if (isCreated) {
                 this.outputResponse(resp, "Проект внесен в БД.", 200);
             } else {

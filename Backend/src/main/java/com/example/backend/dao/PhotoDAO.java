@@ -1,6 +1,7 @@
 package com.example.backend.dao;
 
 import com.example.backend.entities.Photo;
+import com.example.backend.entities.Profile;
 import com.example.backend.entities.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -32,8 +33,8 @@ public class PhotoDAO extends BaseDAO<Photo, Integer> {
 
     public List list(Integer id) throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
-            String st=  "FROM Photo WHERE id =" +id;
-            return session.createQuery(st).list();
+            Profile profile = session.get(Profile.class,id);
+            return profile.getPhotos();
         }
     }
 

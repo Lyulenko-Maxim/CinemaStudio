@@ -21,22 +21,25 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-            String pathInfo = req.getServletPath();
-            /*
+            String pathInfo = req.getPathInfo();
+        if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
             String numberString = pathInfo.replace("/", "");
-            int number = Integer.parseInt(numberString);*/
+            int number = Integer.parseInt(numberString);
             ProfileDAO profileDAO = new ProfileDAO();
             Gson gson = new GsonBuilder()
                         .excludeFieldsWithoutExposeAnnotation()
                         .create();
-            String json = gson.toJson(profileDAO.list());
+            String json = gson.toJson(profileDAO.retreive(number));
             if (json == null) {
                 this.outputResponse(resp, "Профиль не найден.", 404);
             }
             else {
                 this.outputResponse(resp,json,200);
             }
+        } else {
+            this.outputResponse(resp, "Запрос сформулирован неверно.", 500);
         }
+    }
 
 
     @Override

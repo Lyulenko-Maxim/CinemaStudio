@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -18,6 +19,7 @@ public class Profile  extends BaseEntity{
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
+    @Expose
     @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -27,7 +29,7 @@ public class Profile  extends BaseEntity{
     )
     private Set<Profession> professions;
 
-
+    @Expose
     @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -37,6 +39,7 @@ public class Profile  extends BaseEntity{
     )
     private Set<Genres> genres;
 
+    @Expose
     @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -46,6 +49,12 @@ public class Profile  extends BaseEntity{
     )
     private Set<Project> projects;
 
+    @Expose
+    @OneToMany(targetEntity = Photo.class,mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Photo> photos;
+
+
+    @Expose
     @Column(name="birth_date")
     private Date birthdate;
 
@@ -54,18 +63,23 @@ public class Profile  extends BaseEntity{
     @Column(name = "avatar")
     private byte[] avatar;
 
+    @Expose
     @Column(name = "birth_place")
     private String birthplace;
 
+    @Expose
     @Column(name = "experience")
     private String experience;
 
+    @Expose
     @Column(name = "education")
     private String education;
 
+    @Expose
     @Column(name = "institution")
     private String institution;
 
+    @Expose
     @Column(name = "description")
     private String description;
 

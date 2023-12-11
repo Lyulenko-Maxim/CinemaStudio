@@ -27,7 +27,7 @@ public class PhotoServlet extends HttpServlet {
             Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
-            String json = gson.toJson(photoDAO.retreive(number));
+            String json = gson.toJson(photoDAO.list(number));
             System.out.println(json);
             if (json == null) {
                 this.outputResponse(resp, "Фото не найдены.", 404);
