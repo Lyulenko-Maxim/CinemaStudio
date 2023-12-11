@@ -4,6 +4,7 @@ import com.example.backend.dao.PhotoDAO;
 import com.example.backend.dao.ProjectDAO;
 import com.example.backend.entities.Photo;
 import com.example.backend.entities.Project;
+import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,17 +27,32 @@ public class ProjectService {
 
 
     public void deleteProject(HttpServletRequest req, HttpServletResponse resp) {
-        String pathInfo = req.getPathInfo();
-        if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
-            String str = pathInfo.replace("/", "");
-            int[] nums = new int[str.length()];
-            for (int i = 0; i < str.length(); i++) {
-                nums[i] = Character.getNumericValue(str.charAt(i));
-            }
 
-        }
     }
 
+    public boolean createProject(String jsonPayload) {
+
+        if (jsonPayload == null) return false;
+
+        Gson gson = new Gson();
+
+        try {
+            Project project = (Project) gson.fromJson(jsonPayload, Project.class);
+        }
+        catch (Exception e) {}
+        return false;
+    }
+
+    private String toJson(Object list){
+        if (list == null) return null;
+        Gson gson = new Gson();
+        String json = null;
+        try {
+            json = gson.toJson(list);
+        }
+        catch (Exception e) {}
+        return json;
+    }
     public List<Project> findAllProjects() {
         return projectDAO.list();
     }

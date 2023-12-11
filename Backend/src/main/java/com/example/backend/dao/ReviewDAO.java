@@ -1,5 +1,6 @@
 package com.example.backend.dao;
 
+import com.example.backend.entities.Profile;
 import com.example.backend.entities.Project;
 import com.example.backend.entities.Review;
 import org.hibernate.HibernateException;
@@ -25,6 +26,14 @@ public class ReviewDAO extends BaseDAO<Review, Integer>{
     public List<Review> list() throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from Review ", Review.class).list();
+        }
+    }
+
+    public List<Review> list(Integer id) throws HibernateException {
+        try (Session session = sessionFactory.openSession()) {
+            ProfileDAO profileDAO = new ProfileDAO();
+            Profile profile = profileDAO.retreive(id);
+            return profile.getReceiverReviews();
         }
     }
 

@@ -4,6 +4,7 @@ import com.example.backend.dao.PhotoDAO;
 import com.example.backend.dao.ReviewDAO;
 import com.example.backend.entities.Photo;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,24 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@WebServlet("/reviews/")
+@WebServlet("/reviews/*")
 public class ReviewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        String pathInfo = req.getServletPath();
+        String pathInfo = req.getPathInfo();
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
             String numberString = pathInfo.replace("/", "");
             int number = Integer.parseInt(numberString);
             ReviewDAO reviewDAO = new ReviewDAO();
-            String json = this.toJson(reviewDAO.retreive(number));
+            Gson gson = new GsonBuilder()
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .create();
+            String json = gson.toJson(reviewDAO.list(number));
             if (json == null) {
-                this.outputResponse(resp, "Отзыв не найдены.", 404);
+                this.outputResponse(resp, "Отзывы не найдены.", 404);
             }
             else {
                 this.outputResponse(resp,json,200);
-            }
-        } else {
+        }
+    }   else {
             this.outputResponse(resp, "Запрос сформулирован неверно.", 500);
         }
     }

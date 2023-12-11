@@ -53,6 +53,14 @@ public class Profile  extends BaseEntity{
     @OneToMany(targetEntity = Photo.class,mappedBy = "profile", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Photo> photos;
 
+    @Expose
+    @OneToMany(targetEntity = Review.class,mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Review> SenderReviews;
+
+    @Expose
+    @OneToMany(targetEntity = Review.class,mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Review> ReceiverReviews;
+
 
     @Expose
     @Column(name="birth_date")
