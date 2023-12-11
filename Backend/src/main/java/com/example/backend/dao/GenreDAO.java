@@ -1,22 +1,21 @@
 package com.example.backend.dao;
 
-import com.example.backend.entities.Photo;
+import com.example.backend.entities.Genres;
 import com.example.backend.entities.Profile;
 import com.example.backend.entities.Project;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.Set;
 
-public class ProjectDAO extends BaseDAO<Project,Integer>{
+public class GenreDAO extends BaseDAO<Genres,Integer>{
     @Override
-    public boolean create(Project project) {
+    public boolean create(Genres genres) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.persist(project);
+            session.persist(genres);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
@@ -25,39 +24,41 @@ public class ProjectDAO extends BaseDAO<Project,Integer>{
     }
 
 
+
+
     @Override
-    public List<Project> list() throws HibernateException {
+    public List<Genres> list() throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from Project", Project.class).list();
+            return session.createQuery("from Genres", Genres.class).list();
         }
     }
 
 
-    public Set<Project> list(Integer id) throws HibernateException {
+    public Set<Genres> list(Integer id) throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
           /*String st=  "SELECT t.name FROM Profile r JOIN r.projects t WHERE r.id =" +id;
           return session.createQuery(st).list();*/
             ProfileDAO profileDAO = new ProfileDAO();
             Profile pr = profileDAO.retreive(id);
-            return pr.getProjects();
+            return pr.getGenres();
         }
     }
 
 
     @Override
-    public Project retreive(Integer id) throws HibernateException {
+    public Genres retreive(Integer id) throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Project project = session.get(Project.class, id);
+            Genres genres = session.get(Genres.class, id);
             transaction.commit();
-            return project;
+            return genres;
         } catch (HibernateException e) {
             return null;
         }
     }
 
     @Override
-    public boolean update(Project entity) throws HibernateException {
+    public boolean update(Genres entity) throws HibernateException {
         return false;
     }
 
@@ -65,9 +66,8 @@ public class ProjectDAO extends BaseDAO<Project,Integer>{
     public boolean delete(Integer id) throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-
-            Project project = session.get(Project.class,id);
-            session.remove(project);
+            Genres genres = session.get(Genres.class,id);
+            session.remove(genres);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
