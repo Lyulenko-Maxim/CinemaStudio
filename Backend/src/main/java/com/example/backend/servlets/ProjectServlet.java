@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -64,15 +65,22 @@ public class ProjectServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
             String numberString = pathInfo.replace("/","");
-            int id = Integer.parseInt(req.getParameter("id"));
-            int number = Integer.parseInt(numberString);
+            int id = Integer.parseInt(numberString);
+            String name = req.getParameter("name");
             ProjectDAO projectDAO = new ProjectDAO();
-            ProjectService projectService = new ProjectService(projectDAO);
-            boolean isDeleted = projectDAO.delete(number,id);
-            if (isDeleted) {
-                this.outputResponse(resp, "Проект удален", 200);
-            } else {
-                this.outputResponse(resp, "Проект не удален", 404);
+            ProfileDAO profileDAO = new ProfileDAO();
+            Profile profile = profileDAO.retreive(id);
+            for (Project project : profile.getProjects()) {
+                if (project.getName().equals(name)) {
+                    profile.getProjects().remove(project);
+                    profileDAO.update(profile);
+                    this.outputResponse(resp, "Проект удален", 200);
+                    return;
+                }
+                else {
+                    this.outputResponse(resp, "Проект не удален", 404);
+                    return;
+                }
             }
         } else {
             this.outputResponse(resp, "Запрос сформулирован неверно", 500);
@@ -92,24 +100,25 @@ public class ProjectServlet extends HttpServlet {
             ProfileDAO profileDAO = new ProfileDAO();
             List<Project> allProjects = projectDAO.list();
             Profile profile = profileDAO.retreive(id);
-            Set<Project> userProject = profile.getProjects();
-            long id_of_project=0;
-            int id_pr=0;
+            Set<Project> pr = profile.getProjects();
             for (int i=0; i < allProjects.size(); i++) {
                 if (Objects.equals(allProjects.get(i).getName(), name)) {
-                        userProject.add(allProjects.get(i));
+                    try {
+                        profile.getProjects().add(allProjects.get(i));
+                        profileDAO.update(profile);
                         this.outputResponse(resp, "Проект внесен в profile_projects. ПУПУ", 200);
                         return;
+                    }
+                    catch(Exception e) {
+                        this.outputResponse(resp, "Проект не внесен в БД", 405);
+                        return;
+                    }
                 }
             }
             boolean isCreated = projectDAO.create(project);
-            if (isCreated) {
-                this.outputResponse(resp, "Проект внесен в БД.", 200);
-            } else {
-                this.outputResponse(resp, "Проект не внесен в БД", 405);
-            }
-        } else {
-            this.outputResponse(resp, "Запрос сформулирован неверно", 500);
+            profile.getProjects().add(project);
+            profileDAO.update(profile);
+            this.outputResponse(resp, "Проект внесен в profile_projects. ПУПУ2", 200);
         }
     }
 

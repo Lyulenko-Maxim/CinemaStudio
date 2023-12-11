@@ -50,7 +50,7 @@ public class Profile  extends BaseEntity{
     private Set<Project> projects;
 
     @Expose
-    @OneToMany(targetEntity = Photo.class,mappedBy = "profile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Photo.class,mappedBy = "profile", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Photo> photos;
 
 

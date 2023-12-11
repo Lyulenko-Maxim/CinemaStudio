@@ -1,8 +1,10 @@
 package com.example.backend.servlets;
 
 import com.example.backend.dao.PhotoDAO;
+import com.example.backend.dao.ProfileDAO;
 import com.example.backend.dao.ProjectDAO;
 import com.example.backend.entities.Photo;
+import com.example.backend.entities.Profile;
 import com.example.backend.entities.Project;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.Objects;
 
 @WebServlet("/photos/*")
 public class PhotoServlet extends HttpServlet {
@@ -65,8 +69,9 @@ public class PhotoServlet extends HttpServlet {
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
             String numberString = pathInfo.replace("/","");
             int number = Integer.parseInt(numberString);
+            int ph_id = Integer.parseInt(req.getParameter("id"));
             PhotoDAO photoDAO = new PhotoDAO();
-            boolean isDeleted = photoDAO.delete(number);
+            boolean isDeleted = photoDAO.delete(ph_id);
             if (isDeleted) {
                 this.outputResponse(resp, "Фото удалено", 200);
             } else {

@@ -31,9 +31,10 @@ public class PhotoDAO extends BaseDAO<Photo, Integer> {
         }
     }
 
-    public List list(Integer id) throws HibernateException {
+    public List<Photo> list(Integer id) throws HibernateException {
         try (Session session = sessionFactory.openSession()) {
-            Profile profile = session.get(Profile.class,id);
+            ProfileDAO profileDAO = new ProfileDAO();
+            Profile profile = profileDAO.retreive(id);
             return profile.getPhotos();
         }
     }

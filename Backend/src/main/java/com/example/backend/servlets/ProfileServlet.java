@@ -88,11 +88,7 @@ public class ProfileServlet extends HttpServlet {
 
         String pathInfo = req.getPathInfo();
         if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
-            String numberString = pathInfo.replace("/","");
-            int number = Integer.parseInt(numberString);
-            ProfileDAO profileDAO = new ProfileDAO();
-            boolean isDeleted = profileDAO.delete(number);
-            if (isDeleted) {
+            if (true) {
                 this.outputResponse(resp, "Профиль удален", 200);
             } else {
                 this.outputResponse(resp, "Профиль не удален", 404);

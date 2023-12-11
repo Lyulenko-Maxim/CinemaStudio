@@ -76,13 +76,8 @@ public class ProjectDAO extends BaseDAO<Project,Integer>{
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            Profile user = session.get(Profile.class, id);
-            String q =  "DELETE FROM profile_projects WHERE profile_id =" +id + " AND project_id=";
-            session.createNativeQuery(q);
-            /*
-            user.getGenres().clear();
-            user.getGenres().addAll(newGenres);
-            session.saveOrUpdate(user);*/
+            Project project = session.get(Project.class,id);
+            session.remove(project);
             transaction.commit();
             return true;
         } catch (HibernateException e) {
@@ -90,21 +85,4 @@ public class ProjectDAO extends BaseDAO<Project,Integer>{
         }
     }
 
-    public boolean delete(Integer id, Integer id2) throws HibernateException {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-
-            Profile user = session.get(Profile.class, id);
-            String q =  "DELETE FROM profile_projects WHERE profile_id=" +id + " AND project_id=" + id2;
-            session.createNativeQuery(q);
-            /*
-            user.getGenres().clear();
-            user.getGenres().addAll(newGenres);
-            session.saveOrUpdate(user);*/
-            transaction.commit();
-            return true;
-        } catch (HibernateException e) {
-            return false;
-        }
-    }
 }
