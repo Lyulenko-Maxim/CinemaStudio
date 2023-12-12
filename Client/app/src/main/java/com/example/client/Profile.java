@@ -53,13 +53,29 @@ public class Profile {
     @Expose
     private String description;
 
+
+    @SerializedName("email")
+    @Expose
+    private String email;
+
     @SerializedName("id")
     @Expose
     private int id;
 
+    @SerializedName("user")
+    @Expose
+    private User user;
+
+    public Profile() {}
+    public User getUser() {return  user;}
+    public void setUser(User user) {this.user = user;}
 
     public String getName() {return name;}
     public String getSurname() {return surname;}
+
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) { this.email = email; }
 
     public void setName(String name) {this.name = name;}
 

@@ -29,7 +29,10 @@ public class DetailFragment extends Fragment {
         TextView birthplace = view.findViewById(R.id.birthplace);
         TextView institution = view.findViewById(R.id.institution);
         TextView education = view.findViewById(R.id.education);
+        TextView email = view.findViewById(R.id.textEmail);
+        TextView textProjects = view.findViewById(R.id.textProjects);
         TextView description = view.findViewById(R.id.description);
+        TextView name = view.findViewById(R.id.textView);
         NetworkService.getInstance()
                 .getJSONApi()
                 .getProfile(3)
@@ -39,9 +42,12 @@ public class DetailFragment extends Fragment {
 
                         Profile profile = response.body();
                         birthplace.setText(profile.getBirthplace());
-                        institution.setText(profile.getBirthplace());
+                        institution.setText(profile.getInstitution());
                         education.setText(profile.getEducation());
                         description.setText(profile.getDescription());
+                        textProjects.setText(profile.getProjects().size() + ", " + profile.getExperience());
+                        email.setText(profile.getEmail());
+                        name.setText(profile.getName() + " " + profile.getSurname());
                     }
                     @Override
                     public void onFailure(@NonNull Call<Profile> call, @NonNull Throwable t) {

@@ -18,7 +18,7 @@
         tools:src="@drawable/back" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -47,46 +47,49 @@
         app:hintTextColor="#BDBDBD">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextText"
+            android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/inter_medium"
             android:inputType="text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:layout_marginTop="10dp"
-            android:text="Кантемир Балагов"
             android:textColor="#000000"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="300dp"
         android:layout_marginEnd="16dp"
-        android:hint="Профессия"
         app:boxBackgroundColor="#F6F6F6"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
         android:maxWidth="50dp"
-        app:boxStrokeColor="#E8E8E8"
+        app:boxStrokeColor="@color/black"
         android:textColorHint="#BDBDBD"
         app:hintTextColor="#BDBDBD">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextText2"
+        <TextView
+            android:id="@+id/textProfession"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_medium"
+            android:background="#F6F6F6"
+            android:drawableRight="@android:drawable/arrow_down_float"
+            android:drawablePadding="16dp"
+            android:hint="Профессия"
             android:inputType="text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:layout_marginTop="10dp"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:padding="12dp" />
+
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -94,7 +97,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="376dp"
         android:layout_marginEnd="16dp"
-        android:hint="Жанры"
         app:boxBackgroundColor="#F6F6F6"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
@@ -105,17 +107,21 @@
         android:textColorHint="#BDBDBD"
         app:hintTextColor="#BDBDBD">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextText3"
+        <TextView
+            android:id="@+id/textGenres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_medium"
+            android:background="#F6F6F6"
+            android:drawableRight="@android:drawable/arrow_down_float"
+            android:drawablePadding="16dp"
+            android:hint="Жанры"
             android:inputType="text"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:layout_marginTop="10dp"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -135,7 +141,7 @@
         app:hintTextColor="#BDBDBD">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/editDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_medium"
@@ -164,7 +170,7 @@
         app:hintTextColor="#BDBDBD">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/editPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_medium"
@@ -185,13 +191,23 @@
         android:layout_gravity="end"
         android:src="@drawable/check" />
 
-    <ImageView
-        android:id="@+id/imageView"
+
+    <androidx.cardview.widget.CardView
         android:layout_width="73dp"
         android:layout_height="99dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="68dp"
-        tools:src="@drawable/men" />
+        app:cardCornerRadius="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            />
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/button"

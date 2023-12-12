@@ -29,13 +29,12 @@
             android:id="@+id/textName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="140dp"
             android:layout_marginStart="163dp"
             android:layout_marginTop="22dp"
-            android:textSize="26sp"
             android:fontFamily="@font/inter_bold"
-            android:textStyle="bold"
-            android:text="Кантемир Балагов" />
+            android:maxWidth="140dp"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView16"
@@ -90,14 +89,13 @@
             android:text="Тел." />
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/textPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="54dp"
             android:layout_marginTop="228dp"
-            android:textColor="#666666"
             android:fontFamily="@font/inter"
-            android:text="+375 (29) 598-91-35" />
+            android:textColor="#666666" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"

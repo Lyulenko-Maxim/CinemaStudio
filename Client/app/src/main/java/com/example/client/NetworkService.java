@@ -1,5 +1,8 @@
 package com.example.client;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -13,6 +16,8 @@ public class NetworkService {
     private static NetworkService mInstance;
     private static final String BASE_URL = "http://10.0.2.2:8080/api/";
     private Retrofit mRetrofit;
+
+
 
     private NetworkService() {
         mRetrofit = new Retrofit.Builder()
