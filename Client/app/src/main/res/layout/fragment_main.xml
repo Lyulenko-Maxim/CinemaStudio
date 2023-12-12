@@ -9,20 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:layout_height="190dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="22dp"
             app:cardCornerRadius="20dp"
             >
 
             <ImageView
-                android:id="@+id/roundedImageView"
+                android:id="@+id/avatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ava" />
+                 />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -244,44 +244,47 @@
             tools:itemCount="1" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="330dp"
 
             android:fontFamily="@font/inter_medium"
-            android:text="17  ⟶"
+            android:text="  ⟶"
             android:padding="0dp"
-
+            android:textAlignment="textEnd"
+            android:paddingEnd="16dp"
             android:textColor="#5DB075"
             android:textSize="14sp"
             app:backgroundTint="@android:color/transparent" />
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/buttonPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="480dp"
 
             android:fontFamily="@font/inter_medium"
-            android:text="17  ⟶"
+            android:text="  ⟶"
             android:padding="0dp"
-
+            android:textAlignment="textEnd"
+            android:paddingEnd="16dp"
             android:textColor="#5DB075"
             android:textSize="14sp"
             app:backgroundTint="@android:color/transparent" />
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/buttonReviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="925dp"
 
             android:fontFamily="@font/inter_medium"
-            android:text="17  ⟶"
+            android:text="  ⟶"
             android:padding="0dp"
-
+            android:textAlignment="textEnd"
+            android:paddingEnd="16dp"
             android:textColor="#5DB075"
             android:textSize="14sp"
             app:backgroundTint="@android:color/transparent" />

@@ -87,13 +87,12 @@
         android:textSize="16dp" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/birthplace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginTop="77dp"
         android:fontFamily="@font/inter"
-        android:text="Нальчик, СССР"
         android:textColor="#000000"
         android:textSize="16sp" />
 
@@ -120,36 +119,33 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/education"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginTop="179dp"
         android:fontFamily="@font/inter"
-        android:text="Высшее"
         android:textColor="#000000"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/institution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginTop="232dp"
         android:fontFamily="@font/inter"
-        android:text="МГЛУ"
         android:textColor="#000000"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
         android:layout_marginTop="285dp"
         android:fontFamily="@font/inter"
         android:maxWidth="200dp"
-        android:text="Я ищу актеров для своего проекта"
         android:textColor="#000000"
         android:textSize="16sp" />
 

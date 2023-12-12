@@ -7,6 +7,7 @@ import com.example.backend.entities.Profile;
 import com.example.backend.entities.Project;
 import com.example.backend.services.ProjectService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +31,10 @@ public class ProjectServlet extends HttpServlet {
             String numberString = pathInfo.replace("/", "");
             int number = Integer.parseInt(numberString);
             ProjectDAO projectDAO = new ProjectDAO();
-            String json = this.toJson(projectDAO.list(number));
+            Gson gson = new GsonBuilder()
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .create();
+            String json = gson.toJson(projectDAO.list(number));
             if (json == null) {
                 this.outputResponse(resp, "Проекты не найдены.", 404);
             }

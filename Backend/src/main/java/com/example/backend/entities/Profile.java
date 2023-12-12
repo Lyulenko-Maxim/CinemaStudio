@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name = "profiles")
 public class Profile  extends BaseEntity{
 
+    @Expose
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
@@ -53,7 +54,7 @@ public class Profile  extends BaseEntity{
     @OneToMany(targetEntity = Photo.class,mappedBy = "profile", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Photo> photos;
 
-    @Expose
+    
     @OneToMany(targetEntity = Review.class,mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> SenderReviews;
 
@@ -61,6 +62,14 @@ public class Profile  extends BaseEntity{
     @OneToMany(targetEntity = Review.class,mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> ReceiverReviews;
 
+
+    @Expose
+    @Column(name="name")
+    private String name;
+
+    @Expose
+    @Column(name="surname")
+    private String surname;
 
     @Expose
     @Column(name="birth_date")

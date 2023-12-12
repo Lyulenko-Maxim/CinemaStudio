@@ -2,6 +2,7 @@ package com.example.backend.entities;
 
 import com.example.backend.exceptions.InvalidPhoneNumberException;
 import com.example.backend.validators.PhoneNumberValidator;
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,8 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {
+
+    @Expose
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phoneNumber;
 

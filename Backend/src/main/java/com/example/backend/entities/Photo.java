@@ -16,7 +16,7 @@ public class Photo extends BaseEntity{
     @JoinColumn(name = "profile_id", nullable = false)
     private Profile profile;
 
-
+    @Expose
     @Lob
     @Column(name = "image", nullable = false)
     private byte[] image;

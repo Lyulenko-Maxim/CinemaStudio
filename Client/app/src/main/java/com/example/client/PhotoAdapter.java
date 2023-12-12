@@ -1,6 +1,9 @@
 package com.example.client;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,12 +32,18 @@ public PhotoAdapter.ViewHolder onCreateViewHolder(
         return new PhotoAdapter.ViewHolder(view);
         }
 
+
 @Override
 public void onBindViewHolder(PhotoAdapter.ViewHolder holder, int position) {
         Photo photo = photos.get(position);
-        Picasso.get().load(photo.getPhoto()).into(holder.image1);
-
+        byte[] img = photo.getPhoto();
+        if (img != null) {
+            Log.d(img.toString(), "DFSf");
+            Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
+            holder.image1.setImageBitmap(bitmap);
         }
+}
+
 @Override
 public int getItemCount() {
         return photos.size();

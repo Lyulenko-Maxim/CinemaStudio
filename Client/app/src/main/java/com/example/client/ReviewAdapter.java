@@ -3,6 +3,7 @@ package com.example.client;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +37,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ReviewAdapter.ViewHolder holder, int position) {
         Review review = reviews.get(position);
-        holder.nameText.setText(review.getName());
-        holder.textText.setText(review.getText());
-        Picasso.get().load(review.getImageURL()).into(holder.imageView);
+        Profile profile = review.getSender();
+        holder.nameText.setText(profile.getName());
+        holder.textText.setText(review.getReview());
+        byte[] img = profile.getAvatar();
+        if (img != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
+            holder.imageView.setImageBitmap(bitmap);
+        }
     }
     @Override
     public int getItemCount() {
