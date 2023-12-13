@@ -1,25 +1,22 @@
 package com.example.backend.entities;
 
-import com.example.backend.types.UserRoleType;
+import com.google.gson.annotations.Expose;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "roles")
 public class Role extends BaseEntity {
-    @Enumerated(EnumType.STRING)
+    @Expose
     @Column(name = "name", nullable = false, unique = true)
-    private UserRoleType name;
+    private String name;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "user_roles",
-//            joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    )
-//    private Set<User> users = new HashSet<>();
-
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
 }

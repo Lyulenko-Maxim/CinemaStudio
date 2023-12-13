@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -24,17 +25,10 @@ public class User extends BaseEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Expose
     @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    )
-    private Set<Role> roles;
-
-    @OneToOne(mappedBy = "user")
-    private Employer employer;
+    private Set<Role> roles = new HashSet<>();
 
     public void setPhoneNumber(String phoneNumber) throws InvalidPhoneNumberException {
         phoneNumber = PhoneNumberValidator.normalize(phoneNumber);
