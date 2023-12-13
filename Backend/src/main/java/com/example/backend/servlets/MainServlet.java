@@ -1,7 +1,9 @@
 package com.example.backend.servlets;
 
 import com.example.backend.dao.VacancyDAO;
+import com.example.backend.entities.Position;
 import com.example.backend.entities.Vacancy;
+import com.example.backend.services.PositionService;
 import com.example.backend.utils.HibernateUtil;
 import com.google.gson.Gson;
 
@@ -22,22 +24,18 @@ import java.util.List;
 public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        try (Session session = sessionFactory.openSession()) {
-//            resp.getWriter().println("Hello world");
-        }
-        /*
-        VacancyDAO vacancyDAO = new VacancyDAO(sessionFactory);
-        List<Vacancy> vacancies = vacancyDAO.list();
+        PositionService positionService = new PositionService();
+        List<Position> positions = positionService.getPositions(req);
+        Gson gson = new GsonBuilder()
+                .excludeFieldsWithoutExposeAnnotation()
+                .create();
+        String jsonResult = gson.toJson(positions);
 
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-
-        String jsonResult = gson.toJson(vacancies);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
 
         OutputStream out = resp.getOutputStream();
         out.write(jsonResult.getBytes());
         out.flush();
-
-         */
     }
 }

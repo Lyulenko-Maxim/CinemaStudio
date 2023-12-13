@@ -6,6 +6,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import lombok.Getter;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class BaseDAO<E, K> {
+    @Getter
     protected static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public abstract boolean create(E entity) throws HibernateException;

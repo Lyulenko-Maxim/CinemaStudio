@@ -1,29 +1,37 @@
 package com.example.backend.shared;
 
-import com.example.backend.types.CurrencyType;
+import com.example.backend.entities.Currency;
 import com.example.backend.types.SalaryType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.google.gson.annotations.Expose;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class Salary {
-
+    @Expose
     @Enumerated(EnumType.STRING)
     @Column(name = "salary_type", nullable = false)
     private SalaryType type;
 
-    @Column(name = "salary_amount")
-    private BigDecimal amount;
+    @Expose
+    @Column(name = "salary_min_amount")
+    private BigDecimal minAmount;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "salary_currency")
-    private CurrencyType currency;
+    @Expose
+    @Column(name = "salary_max_amount")
+    private BigDecimal maxAmount;
+
+    @Expose
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "salary_currency_id", referencedColumnName = "id")
+    private Currency currency;
 }

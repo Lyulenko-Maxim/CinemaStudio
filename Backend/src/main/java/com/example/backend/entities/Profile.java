@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "profiles")
-public class Profile  extends BaseEntity{
+public class Profile extends BaseEntity {
 
     @Expose
     @OneToOne(cascade = CascadeType.ALL)
@@ -21,45 +22,28 @@ public class Profile  extends BaseEntity{
     private User user;
 
     @Expose
-    @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "profile_profession",
-            joinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "profession_id", referencedColumnName = "id")
-    )
-    private Set<Profession> professions;
+    private Set<Profession> professions = new HashSet<>();
 
     @Expose
-    @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "profile_genres",
-            joinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id")
-    )
-    private Set<Genres> genres;
+    private Set<Genres> genres = new HashSet<>();
 
     @Expose
-    @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "profile_projects",
-            joinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id")
-    )
-    private Set<Project> projects;
+    private Set<Project> projects = new HashSet<>();
 
     @Expose
-    @OneToMany(targetEntity = Photo.class,mappedBy = "profile", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @Column(name = "birth_date")
+    @OneToMany(targetEntity = Photo.class, mappedBy = "profile", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Photo> photos;
 
 
-    @OneToMany(targetEntity = Review.class,mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Review.class, mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> SenderReviews;
 
     @Expose
-    @OneToMany(targetEntity = Review.class,mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Review.class, mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Review> ReceiverReviews;
 
     @Expose
@@ -76,7 +60,7 @@ public class Profile  extends BaseEntity{
 
 
     @Expose
-    @Column(name="birth_date")
+    @Column(name = "birth_date")
     private Date birthdate;
 
     @Expose

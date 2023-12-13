@@ -22,14 +22,13 @@ public class Vacancy extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Expose
     @OneToMany(mappedBy = "vacancy", fetch = FetchType.EAGER)
-    private Set<Position> positions;
+    private Set<Position> positions = new HashSet<>();
 
     @Expose
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "employer_id", nullable = false)
-    private Employer employer;
+    @JoinColumn(name = "employer_profile_id", nullable = false)
+    private Profile employerProfile;
 
     @Expose
     @Lob

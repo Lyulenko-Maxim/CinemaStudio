@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -12,12 +13,10 @@ import java.util.Set;
 @Entity
 @Table(name = "projects")
 public class Project extends BaseEntity {
-
     @Expose
     @Column(name = "name", nullable = false)
     private String name;
 
-
     @ManyToMany(mappedBy = "projects")
-    private Set<Profile> profiles;
+    private Set<Profile> profiles = new HashSet<>();
 }
