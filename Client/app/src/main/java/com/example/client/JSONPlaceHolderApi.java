@@ -28,8 +28,12 @@ public interface JSONPlaceHolderApi {
     public Call<List<Review>> getReview(@Path("id") int id);
 
 
+    @Headers("Content-Type: application/json")
     @PUT("profiles/{id}")
-    public Call<Profile> updateProfile(@Path("id") int id, @Body Profile profile);
+    public Call<String> updateProfile(@Path("id") int id, @Body Profile profile);
 
 
+    @Headers("Content-Type: application/json")
+    @POST("projects/{id}")
+    public Call<String> postProject(@Path("id") int id, @Body Project project);
 }

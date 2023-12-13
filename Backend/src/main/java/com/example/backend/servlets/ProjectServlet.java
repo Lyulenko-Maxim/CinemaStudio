@@ -13,8 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -95,9 +97,7 @@ public class ProjectServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException{
 
-        String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        System.out.println(reqBody);
-
+        String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator().trim())).trim();
         int rc = HttpServletResponse.SC_OK;
         Gson gson = new Gson();
         try {

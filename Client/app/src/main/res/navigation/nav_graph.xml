@@ -82,6 +82,18 @@
         <action
             android:id="@+id/action_projectsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_projectsFragment_to_projectAdd"
+            app:destination="@id/projectAdd" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectAdd"
+        android:name="com.example.client.ProjectAdd"
+        android:label="fragment_project_add"
+        tools:layout="@layout/fragment_project_add" >
+        <action
+            android:id="@+id/action_projectAdd_to_projectsFragment"
+            app:destination="@id/projectsFragment" />
     </fragment>
 
 </navigation>

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import org.hibernate.SessionFactory;
+import org.jose4j.lang.StringUtil;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +31,6 @@ public class ProfileServlet extends HttpServlet {
             int number = Integer.parseInt(numberString);
             ProfileDAO profileDAO = new ProfileDAO();
             Gson gson = new GsonBuilder()
-                        .setLenient()
                         .excludeFieldsWithoutExposeAnnotation()
                         .create();
             String json = gson.toJson(profileDAO.retreive(number));
@@ -46,26 +46,35 @@ public class ProfileServlet extends HttpServlet {
     }
 
 
+
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         String pathInfo = req.getPathInfo();
-
         String reqBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-
 
         int rc = HttpServletResponse.SC_OK;
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new java.io.StringReader(reqBody));
-        reader.setLenient(true);
+
         try {
             if (pathInfo.matches("\\/[0-9]+\\/{0,1}")) {
                 ProfileDAO profileDAO = new ProfileDAO();
                 String numberString = pathInfo.replace("/", "");
                 int number = Integer.parseInt(numberString);
-                Profile profile = (Profile) gson.fromJson(reader, Profile.class);
+                Profile profile = (Profile) gson.fromJson(reqBody, Profile.class);
                 Profile profile_old = profileDAO.retreive(number);
+
+
                 profile_old.setSurname(profile.getSurname());
                 profile_old.setName(profile.getName());
+                profile_old.setBirthplace(profile.getBirthplace());
+
+                profile_old.setEmail(profile.getEmail());
+                profile_old.setExperience(profile.getExperience());
+             
+                profile_old.setEducation(profile.getEducation());
+                profile_old.setInstitution(profile.getInstitution());
+
+
                 boolean profileUpdated = profileDAO.update(profile_old);
                 if (profileUpdated) {
                     this.outputResponse(resp, "Профиль обновлен в БД.", 200);

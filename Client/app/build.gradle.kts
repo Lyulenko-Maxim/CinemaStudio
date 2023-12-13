@@ -38,6 +38,7 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation("com.squareup.retrofit2:retrofit:2.4.0")
     implementation("com.squareup.retrofit2:converter-gson:2.3.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.3.1")
     implementation("androidx.navigation:navigation-fragment:$navVersion")
     implementation("androidx.navigation:navigation-ui:$navVersion")
     implementation("androidx.recyclerview:recyclerview:$recyclerViewVersion")

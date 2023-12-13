@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class ProjectsFragment extends Fragment {
         NetworkService.getInstance()
                 .getJSONApi()
                 .getProject(3)
+
                 .enqueue(new Callback<List<Project>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<Project>> call, @NonNull Response<List<Project>> response) {
@@ -49,6 +51,13 @@ public class ProjectsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_projectsFragment_to_mainFragment);
+            }
+        });
+        Button add = view.findViewById(R.id.button4);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_projectsFragment_to_projectAdd);
             }
         });
         return view;

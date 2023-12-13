@@ -1,5 +1,7 @@
 package com.example.client;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -13,13 +15,10 @@ public class Project {
     private String name;
 
 
-    @SerializedName("id")
-    @Expose
-    private int id;
+    public Project (String name) {
+        this.name = name;
 
-    public void setId(int id) {this.id = id;}
-
-    public int getId() {return id;}
+    }
 
     public void setName(String name) {this.name = name;}
 
@@ -27,4 +26,11 @@ public class Project {
         return name;
     }
 
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "name: " + getName();
+    }
 }

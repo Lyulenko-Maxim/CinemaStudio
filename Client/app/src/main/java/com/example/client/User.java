@@ -9,9 +9,16 @@ public class User {
     @Expose
     private String phoneNumber;
 
+    @SerializedName("id")
+    @Expose
+    private int id;
 
     public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    public void setId(int id) {this.id = id;}
+
+    public int getId() {return id;}
 }

@@ -131,7 +131,7 @@ public class EditMainFragment extends Fragment {
 
         // initialize selected language array
         selectedLanguage = new boolean[langArray.length];
-        Profile profile= new Profile();
+        Profile profileThis= new Profile();
         NetworkService.getInstance()
                 .getJSONApi()
                 .getProfile(3)
@@ -142,15 +142,18 @@ public class EditMainFragment extends Fragment {
                         Profile profile = response.body();
                         editName.setText(profile.getName() + " " + profile.getSurname());
                         editPhone.setText(profile.getUser().getPhoneNumber());
-                        profile.setEmail(profile.getEmail());
-                        profile.setPhotos(profile.getPhotos());
-                        profile.setProjects(profile.getProjects());
-                        profile.setAvatar(profile.getAvatar());
-                        profile.setBirthplace(profile.getBirthplace());
-                        profile.setName(profile.getSurname());
-                        profile.setUser(profile.getUser());
-                        profile.setSurname(profile.getSurname());
-                        profile.setId(profile.getId());
+
+
+                        profileThis.setSurname(profile.getSurname());
+                        profileThis.setName(profile.getName());
+                        profileThis.setBirthplace(profile.getBirthplace());
+
+                        profileThis.setEmail(profile.getEmail());
+                        profileThis.setExperience(profile.getExperience());
+                        profileThis.setId(profile.getId());
+                        profileThis.setEducation(profile.getEducation());
+                        profileThis.setInstitution(profile.getInstitution());
+
                         byte[] photo = profile.getAvatar();
                         if (photo != null) {
                             Bitmap bitmap = BitmapFactory.decodeByteArray(photo, 0, photo.length);
@@ -177,15 +180,16 @@ public class EditMainFragment extends Fragment {
             public void onClick(View v) {
                 String namestr = editName.getText().toString();
                 String[] name = namestr.split(" ");
-                profile.setName(name[0]);
-                profile.setSurname(name[1]);
+                profileThis.setName(name[0]);
+                profileThis.setSurname(name[1]);
                 NetworkService.getInstance()
                         .getJSONApi()
-                        .updateProfile(3,profile)
-                        .enqueue(new Callback<Profile>() {
+                        .updateProfile(3,profileThis)
+                        .enqueue(new Callback<String>() {
                             @Override
-                            public void onResponse(@NonNull Call<Profile> call, @NonNull Response<Profile> response) {
+                            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                                 if (response.isSuccessful()) {
+                                    Navigation.findNavController(view).navigate(R.id.action_editMainFragment_to_mainFragment);
                                     Toast.makeText(getActivity(), "Data updated to API", Toast.LENGTH_SHORT).show();
                                 }
                                 else {
@@ -194,7 +198,7 @@ public class EditMainFragment extends Fragment {
                             }
                             @Override
                             public void onFailure
-                                    (@NonNull Call<Profile> call, @NonNull Throwable t) {
+                                    (@NonNull Call<String> call, @NonNull Throwable t) {
                                 //  textCity.append("Error occurred while getting request!");
                                 Log.i("MainActivity", t.getMessage());
                                 t.printStackTrace();

@@ -22,7 +22,7 @@ public class Review  extends BaseEntity{
     @JoinColumn(name = "sender", nullable = false)
     private Profile sender;
 
-
+    @Expose
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "receiver", nullable = false)
     private Profile receiver;

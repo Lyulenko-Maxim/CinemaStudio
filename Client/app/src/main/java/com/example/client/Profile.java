@@ -62,13 +62,30 @@ public class Profile {
     @Expose
     private int id;
 
+    @SerializedName("genres")
+    @Expose
+    private Set<Genre> genres;
+
+    @SerializedName("professions")
+    @Expose
+    private Set<Profession> professions;
+
     @SerializedName("user")
     @Expose
     private User user;
 
-    public Profile() {}
+
     public User getUser() {return  user;}
     public void setUser(User user) {this.user = user;}
+
+    public void setGenres(Set<Genre> genres) {this.genres=genres;}
+
+    public Set<Genre> getGenres() {return genres;}
+
+
+    public void setProfessions(Set<Profession> professions) {this.professions=professions;}
+
+    public Set<Profession> getProfessions() {return professions;}
 
     public String getName() {return name;}
     public String getSurname() {return surname;}
@@ -92,6 +109,11 @@ public class Profile {
     public String getBirthplace() {
       return birthplace;
     }
+
+    public void setExperience(String experience) {this.experience=experience;}
+    public void setEducation(String education) {this.education=education;}
+    public void setInstitution(String institution) {this.institution=institution;}
+    public void setDescription(String description) {this.description=description;}
 
     public String getExperience() {return experience;}
 
