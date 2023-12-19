@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.*;
 
@@ -20,6 +22,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "positions")
 @FilterDefs({
 
@@ -93,15 +97,15 @@ public class Position extends BaseEntity {
     private ExperienceType experience;
 
     @Expose
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Schedule> schedules = new HashSet<>();
 
     @Expose
-    @Column(name = "responsibilities")
+    @Column(name = "responsibilities", columnDefinition = "text")
     private String responsibilities;
 
     @Expose
-    @Column(name = "requirements")
+    @Column(name = "requirements", columnDefinition = "text")
     private String requirements;
 
     @Expose
@@ -118,4 +122,22 @@ public class Position extends BaseEntity {
     @Embedded
     private Salary salary;
 
+    public Position(Vacancy vacancy,
+                    Profession profession,
+                    ExperienceType experience,
+                    Set<Schedule> schedules,
+                    String responsibilities,
+                    String requirements,
+                    Location location,
+                    Salary salary) {
+
+        this.vacancy = vacancy;
+        this.profession = profession;
+        this.experience = experience;
+        this.schedules = schedules;
+        this.responsibilities = responsibilities;
+        this.requirements = requirements;
+        this.location = location;
+        this.salary = salary;
+    }
 }

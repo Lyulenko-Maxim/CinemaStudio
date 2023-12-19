@@ -5,6 +5,7 @@ import com.example.backend.validators.PhoneNumberValidator;
 import com.google.gson.annotations.Expose;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(name = "users")
 public class User extends BaseEntity {
 
@@ -29,6 +31,12 @@ public class User extends BaseEntity {
     @Setter
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Role> roles = new HashSet<>();
+
+    public User(String phoneNumber, String password, Set<Role> roles) throws InvalidPhoneNumberException {
+        setPhoneNumber(phoneNumber);
+        setPassword(password);
+        this.roles = roles;
+    }
 
     public void setPhoneNumber(String phoneNumber) throws InvalidPhoneNumberException {
         phoneNumber = PhoneNumberValidator.normalize(phoneNumber);

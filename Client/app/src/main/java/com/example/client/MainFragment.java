@@ -41,14 +41,11 @@ public class MainFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
 
-
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         VideoView videoview = view.findViewById(R.id.videoview);
         String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + R.raw.vid;
         Uri uri = Uri.parse(videoPath);
         videoview.setVideoURI(uri);
-
-
 
 
         MediaController mediaController = new MediaController(getActivity());
@@ -85,21 +82,19 @@ public class MainFragment extends Fragment {
                         }
                         List<Project> projects = null;
                         List<Photo> photos = null;
-                        if (profile.getProjects().size()>2) {
+                        if (profile.getProjects().size() > 2) {
                             projects = profile.getProjects().subList(0, 2);
-                        }
-                        else {
+                        } else {
                             projects = profile.getProjects();
                         }
-                        ProjectAdapter adapter = new ProjectAdapter(getActivity(),projects);
+                        ProjectAdapter adapter = new ProjectAdapter(getActivity(), projects);
                         rv.setAdapter(adapter);
-                        if (profile.getPhotos().size()>3) {
-                            photos = profile.getPhotos().subList(0,3);
-                        }
-                        else {
+                        if (profile.getPhotos().size() > 3) {
+                            photos = profile.getPhotos().subList(0, 3);
+                        } else {
                             photos = profile.getPhotos();
                         }
-                        PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(),photos);
+                        PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(), photos);
                         photoRec.setAdapter(photoAdapter);
                         buttonPhotos.setText(profile.getPhotos().size() + "  ⟶");
                         buttonProjects.setText(profile.getProjects().size() + "  ⟶");
@@ -107,6 +102,7 @@ public class MainFragment extends Fragment {
                         name.setText(profile.getName() + " " + profile.getSurname());
                         phone.setText(profile.getUser().getPhoneNumber());
                     }
+
                     @Override
                     public void onFailure(@NonNull Call<Profile> call, @NonNull Throwable t) {
                         t.printStackTrace();
@@ -115,19 +111,18 @@ public class MainFragment extends Fragment {
                 });
 
 
-
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_editMainFragment);
             }
         });
-       buttonMore.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_detailFragment);
-           }
-       });
+        buttonMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_detailFragment);
+            }
+        });
         buttonProjects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,12 +135,12 @@ public class MainFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_photosFragment);
             }
         });
-       buttonReviews.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_reviewFragment2);
-           }
-       });
+        buttonReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_reviewFragment2);
+            }
+        });
 
 
         NetworkService.getInstance()
@@ -156,13 +151,16 @@ public class MainFragment extends Fragment {
                     public void onResponse(@NonNull Call<List<Review>> call, @NonNull Response<List<Review>> response) {
 
                         List<Review> reviews = response.body();
-                        buttonReviews.setText(reviews.size() + "  ⟶");
-                        if (reviews.size()>1) {
-                            reviews = reviews.subList(0,1);
+                        if (reviews != null) {
+                            buttonReviews.setText(reviews.size() + "  ⟶");
+                        }
+                        if (reviews != null && reviews.size() > 1) {
+                            reviews = reviews.subList(0, 1);
                         }
                         ReviewAdapter adapter = new ReviewAdapter(getActivity(), reviews);
                         reviewRec.setAdapter(adapter);
                     }
+
                     @Override
                     public void onFailure(@NonNull Call<List<Review>> call, @NonNull Throwable t) {
                         t.printStackTrace();

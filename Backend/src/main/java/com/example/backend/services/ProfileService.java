@@ -1,31 +1,58 @@
 package com.example.backend.services;
 
-import com.example.backend.dao.PhotoDAO;
 import com.example.backend.dao.ProfileDAO;
-import com.example.backend.entities.Photo;
 import com.example.backend.entities.Profile;
+import com.example.backend.types.OrderType;
 
-public class ProfileService {
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    private final ProfileDAO profileDAO;
+public class ProfileService extends GenericFilterService {
+    private final ProfileDAO profileDAO = new ProfileDAO();
 
-    public ProfileService(ProfileDAO profileDAO) {
-        this.profileDAO = profileDAO;
+    public ProfileService(HttpServletRequest request) {
+        super(request);
     }
 
-    public void findProfile(int id) {
-        profileDAO.retreive(id);
+    public List<Profile> getProfiles() {
+        return profileDAO.list();
     }
 
-    public void addProfile(Profile profile) {
-        profileDAO.create(profile);
+    public List<Profile> getCandidatesProfiles() {
+        Map<String, Map<String, Object>> filtersMap = createFiltersMap();
+        filtersMap.put(
+                "roleFilter",
+                Collections.singletonMap("roleParam", "CANDIDATE")
+        );
+        Map<String, OrderType> ordersMap = createOrdersMap();
+        return profileDAO.list(filtersMap, ordersMap);
     }
 
-    public void deleteProfile(int id) {
-        profileDAO.delete(id);
+    @Override
+    protected Map<String, Map<String, Object>> createFiltersMap() {
+        Map<String, Map<String, Object>> filtersMap = new HashMap<>();
+        addFilterIfNotBlank(filtersMap, "isBusy");
+        addFilterIfNotBlank(filtersMap, "experience");
+        addFilterIfNotBlank(filtersMap, "withSalary");
+        addFilterIfNotBlank(filtersMap, "locationCity");
+        addFilterIfNotBlank(filtersMap, "minAge");
+        addFilterIfNotBlank(filtersMap, "maxAge");
+        addFilterIfNotBlank(filtersMap, "Age");
+        addFilterIfNotBlank(filtersMap, "gender");
+        addFilterIfNotBlank(filtersMap, "withPhotoOnly");
+        return filtersMap;
     }
 
-    public void updateProfile(Profile profile) {
-        profileDAO.update(profile);
+    @Override
+    protected Map<String, OrderType> createOrdersMap() {
+        Map<String, OrderType> ordersMap = new HashMap<>();
+        addOrderIfNotBlank(ordersMap, "rating");
+        addOrderIfNotBlank(ordersMap, "minAmount");
+        return ordersMap;
     }
+
+
 }

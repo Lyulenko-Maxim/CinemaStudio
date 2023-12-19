@@ -17,17 +17,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-public abstract class BaseDAO<E, K> {
-    @Getter
-    protected static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+public interface BaseDAO<E, K> {
+    boolean create(E entity) throws HibernateException;
 
-    public abstract boolean create(E entity) throws HibernateException;
+    List<E> list() throws HibernateException;
 
-    public abstract List<E> list() throws HibernateException;
+    E retreive(K id) throws HibernateException;
 
-    public abstract E retreive(K id) throws HibernateException;
+    boolean update(E entity) throws HibernateException;
 
-    public abstract boolean update(E entity) throws HibernateException;
-
-    public abstract boolean delete(K id) throws HibernateException;
+    boolean delete(K id) throws HibernateException;
 }

@@ -5,7 +5,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
@@ -13,6 +15,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "professions")
 public class Profession extends BaseEntity {
@@ -22,4 +25,8 @@ public class Profession extends BaseEntity {
 
     @ManyToMany(mappedBy = "professions")
     private Set<Profile> profiles = new HashSet<>();
+
+    public Profession(String name) {
+        this.name = name;
+    }
 }
